@@ -1,3 +1,37 @@
+const searchSongs = () => {
+    const searchText = document.getElementById('search-field').value;
+    const url = `https://www.themealdb.com/api/json/v1/1/search.php?f=b`
+        // load data
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayMeals(data.meals));
+}
+
+const displayMeals = mealItemMatched => {
+    const mealContainer = document.getElementById('meals');
+    mealContainer.innerHTML = '';
+    mealItemMatched.forEach(meal => {
+        const mealDiv = document.createElement('div');
+
+        mealDiv.innerHTML = `
+        <div >
+        <img class="img-style" src=" ${meal.strMealThumb} "></img>
+        <br>
+        <h5 class="meal-name"> ${meal.strMeal}</h5>
+        </div>
+        `;
+
+        mealContainer.appendChild(mealDiv);
+    })
+}
+
+
+
+
+
+
+
+
 fetch('https://www.themealdb.com/api/json/v1/1/search.php?f=b')
     .then(res => res.json())
     .then(data => mealItems(data));
