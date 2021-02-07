@@ -3,3 +3,25 @@
     display: grid;
     margin: 80px 350px;
 }
+
+.mealsDiv {
+    border: 1px solid goldenrod;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    width: 250px;
+}
+
+.meal-name {
+    font-size: 30px;
+}
+
+.img-style {
+    width: 200px;
+}
+
+#meals {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+}
