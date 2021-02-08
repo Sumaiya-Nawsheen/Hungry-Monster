@@ -1,28 +1,31 @@
 //  search bar + fetching data
-
 const searchMeals = () => {
     const searchText = document.getElementById('search-field').value.trim();
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`
     fetch(url)
         .then(res => res.json())
         .then(data => displayMeals(data.meals))
-        .catch(error => displayError('Something Went Wrong!! Please try again later!'));
+        .catch(error => displayError('Sorry,it is not available !! Please try another meal!'));
 }
 
 const displayMeals = mealItemMatched => {
         const mealContainer = document.getElementById('mealsItem');
         mealContainer.innerHTML = '';
         mealItemMatched.forEach(meal => {
-            const mealDiv = document.createElement('div');
-            mealDiv.innerHTML = `
-        <div  onclick="mealDetail('${meal.strMeal}')">
-        <img class="img-style" src=" ${meal.strMealThumb} "></img>
-        <br>
-        <h5 class="meal-name"> ${meal.strMeal}</h5>
-        </div>
-        `;
-            mealContainer.appendChild(mealDiv);
+            const searchText = document.getElementById('search-field').value;
+            if (searchText.split('${meal.strMeal}')) {
+                const mealDiv = document.createElement('div');
+                mealDiv.innerHTML = `
+                <div  onclick="mealDetail('${meal.strMeal}')">
+                <img class="img-style" src=" ${meal.strMealThumb} "></img>
+                <br>
+                <h5 class="meal-name"> ${meal.strMeal}</h5>
+                </div>
+                `;
+                mealContainer.appendChild(mealDiv);
+            }
         })
+
     }
     // meal ingredients
 const mealDetail = name => {
