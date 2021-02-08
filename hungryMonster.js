@@ -5,7 +5,8 @@ const searchMeals = () => {
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`
     fetch(url)
         .then(res => res.json())
-        .then(data => displayMeals(data.meals));
+        .then(data => displayMeals(data.meals))
+        .catch(error => displayError('Something Went Wrong!! Please try again later!'));
 }
 
 const displayMeals = mealItemMatched => {
@@ -56,4 +57,8 @@ const displayIngredients = mealIngred => {
 
         mealContainer.appendChild(mealDiv);
     })
+}
+const displayError = error => {
+    const errorTag = document.getElementById('error-message');
+    errorTag.innerText = error;
 }
