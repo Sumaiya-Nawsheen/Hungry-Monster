@@ -27,23 +27,32 @@ const displayMeals = mealItemMatched => {
 const mealDetail = name => {
     fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=a')
         .then(res => res.json())
-        .then(data => displayIngredients(data.meals[0]));
+        .then(data => displayIngredients(data.meals));
 }
 const displayIngredients = mealIngred => {
     const mealContainer = document.getElementById('ingredients');
-    mealContainer.innerHTML = `
-    <div class="detail-style">
-    <img class="img-style" src=" ${mealIngred.strMealThumb} "></img>
-    <h3> ${mealIngred.strMeal} </h3>
+
+    mealContainer.innerHTML = '';
+    mealIngred.forEach(meal => {
+        const mealDiv = document.createElement('div');
+        mealDiv.className = "detail-style";
+
+        mealDiv.innerHTML = `
+    
+    <img class="img-style" src=" ${meal.strMealThumb} "></img>
+    <h3> ${meal.strMeal} </h3>
     <h5> Ingredients </h5>
                  <ul>
-                 <li> ${mealIngred.strMeasure1}  ${mealIngred.strIngredient1} </li>
-                  <li> ${mealIngred.strMeasure2}  ${mealIngred.strIngredient2} </li>
-                  <li> ${mealIngred.strMeasure3}  ${mealIngred.strIngredient3} </li>
-                  <li> ${mealIngred.strMeasure4}  ${mealIngred.strIngredient4} </li>
-                  <li> ${mealIngred.strMeasure5}  ${mealIngred.strIngredient5} </li>
-                  <li> ${mealIngred.strMeasure6}  ${mealIngred.strIngredient6} </li>
+                 <li> ${meal.strMeasure1}  ${meal.strIngredient1} </li>
+                  <li> ${meal.strMeasure2}  ${meal.strIngredient2} </li>
+                  <li> ${meal.strMeasure3}  ${meal.strIngredient3} </li>
+                  <li> ${meal.strMeasure4}  ${meal.strIngredient4} </li>
+                  <li> ${meal.strMeasure5}  ${meal.strIngredient5} </li>
+                  <li> ${meal.strMeasure6}  ${meal.strIngredient6} </li>
                   </ul>
-                  </div>
+                 
                 `;
+
+        mealContainer.appendChild(mealDiv);
+    })
 }
