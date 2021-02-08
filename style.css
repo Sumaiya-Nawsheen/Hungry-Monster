@@ -20,12 +20,14 @@
     width: 200px;
 }
 
-#meals {
+#mealsItem {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 20px;
 }
 
-.mealsDiv {
-    display: none;
+.detail-style {
+    width: 100%;
+    display: grid;
+    margin: 80px 350px;
 }
