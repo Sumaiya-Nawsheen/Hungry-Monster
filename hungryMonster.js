@@ -1,8 +1,8 @@
 //  search bar + fetching data
+
 const searchMeals = () => {
-    const searchText = document.getElementById('search-field').value;
-    const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=a`
-        // load data
+    const searchText = document.getElementById('search-field').value.trim();
+    const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`
     fetch(url)
         .then(res => res.json())
         .then(data => displayMeals(data.meals));
@@ -25,7 +25,8 @@ const displayMeals = mealItemMatched => {
     }
     // meal ingredients
 const mealDetail = name => {
-    fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=a')
+    const url2 = `https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`
+    fetch(url2)
         .then(res => res.json())
         .then(data => displayIngredients(data.meals));
 }
