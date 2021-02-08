@@ -5,7 +5,7 @@ const searchMeals = () => {
     fetch(url)
         .then(res => res.json())
         .then(data => displayMeals(data.meals))
-        .catch(error => displayError('Sorry,it is not available !! Please try another meal!'));
+        .catch(error => displayError('Sorry, it is not available !! Please try another meal!'));
 }
 
 const displayMeals = mealItemMatched => {
@@ -15,6 +15,7 @@ const displayMeals = mealItemMatched => {
             const searchText = document.getElementById('search-field').value;
             if (searchText.split('${meal.strMeal}')) {
                 const mealDiv = document.createElement('div');
+                mealDiv.className = "mealsDiv";
                 mealDiv.innerHTML = `
                 <div  onclick="mealDetail('${meal.strMeal}')">
                 <img class="img-style" src=" ${meal.strMealThumb} "></img>
@@ -34,17 +35,15 @@ const mealDetail = name => {
         .then(res => res.json())
         .then(data => displayIngredients(data.meals));
 }
-const displayIngredients = mealIngred => {
+const displayIngredients = mealIngredients => {
     const mealContainer = document.getElementById('ingredients');
 
     mealContainer.innerHTML = '';
-    mealIngred.forEach(meal => {
+    mealIngredients.forEach(meal => {
         const mealDiv = document.createElement('div');
         mealDiv.className = "detail-style";
-
         mealDiv.innerHTML = `
-    
-    <img class="img-style" src=" ${meal.strMealThumb} "></img>
+     <img class="img-style" src=" ${meal.strMealThumb} "></img>
     <h3> ${meal.strMeal} </h3>
     <h5> Ingredients </h5>
                  <ul>
@@ -55,9 +54,7 @@ const displayIngredients = mealIngred => {
                   <li> ${meal.strMeasure5}  ${meal.strIngredient5} </li>
                   <li> ${meal.strMeasure6}  ${meal.strIngredient6} </li>
                   </ul>
-                 
-                `;
-
+                 `;
         mealContainer.appendChild(mealDiv);
     })
 }

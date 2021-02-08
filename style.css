@@ -9,7 +9,9 @@
     border-radius: 20px;
     padding: 20px;
     text-align: center;
+    margin: 5px auto;
     width: 250px;
+    background-color: lightgray;
 }
 
 .meal-name {
